@@ -33,10 +33,13 @@ export function YouTube() {
     setConvert(flag)
   }
 
+  const [language, setLanguage] = useState("en")
+
   return (
       <div className="container md:px-4 px-0 rounded md:w-2/3 w-[93%] mx-auto">
-        <header className="flex md:flex-row flex-col md:justify-between justify-start md:items-center items-start py-4">
+        <header className="flex items-center justify-between py-4 px-3">
           <h1 className="md:text-3xl text-xl  font-bold text-[#333333]">KoheiMP3</h1>
+          <Button onClick={() => setLanguage(language === "en" ? "ja" : "en")} className="bg-red-500 text-white hover:bg-red-600">{language === "en" ? "日本語" : "English"}</Button>
         </header>
 
         {convert ? (
@@ -55,6 +58,7 @@ export function YouTube() {
               <section className="mt-8 border border-gray-200 md:p-16 p-5">
                 <h2 className="md:text-4xl text-xl font-bold text-center text-[#333333] mb-4">YouTube to MP3
                   Converter</h2>
+
                 <div className="flex justify-center items-center space-x-4">
                   <input
                       type={"text"}
@@ -68,34 +72,22 @@ export function YouTube() {
                   <Button onClick={() => upload()} className="bg-red-500 text-white hover:bg-red-600">Convert</Button>
                 </div>
               </section>
-              <main>
-                <p className="text-left text-[#333333] my-6 w-11/12 mx-auto">
-                  By using our service, <br className={"block md:hidden"}/>you are accepting our
-                  <Link className="text-red-500 hover:text-red-600 pl-1" href="#">
-                    terms of service
-                  </Link>
-                  .{"\n                  "}
-                </p>
+              <main className={"mt-14"}>
                 <section className="md:w-full w-[95%] mx-auto">
-                  <h3 className="md:text-3xl text-xl font-bold text-[#333333] mb-4 underline underline-offset-4">Best
-                    Free YouTube MP3 Downloader</h3>
-                  <p className="text-[#333333] md:leading-[35px] leading-[28px]">
-                    OnlyMP3 web app helps you easily convert YouTube videos to MP3 music files with just one click. You
-                    don not
-                    have to Signup or install any software to perform the conversion. It is as easy as apple pie. We
-                    also
-                    support
-                    an unlimited number of videos to convert into audio files and save them to your Dropbox account. To
-                    convert
-                    a YT video, you just have to copy and paste the video URL into our YouTube MP3 converter tool and we
-                    will
-                    auto convert the Video to Audio file, You can also click the Dropbox button to save the file to the
-                    cloud
-                    platform. Enjoy unlimited conversion of music from youtube in the best available quality. It is a
-                    completely
-                    free and secure service. Learn more about OnlyMP3 on <Link
-                      className={"text-red-500 hover:underline"}
-                      href={"https://www.tecklinker.com/"}>https://www.tecklinker.com/</Link>
+                  <h3 className="md:text-3xl text-xl font-bold text-center text-[#333333] mb-4 underline underline-offset-4">
+                    {language === "ja" ? "最高品質のYouTube MP3変換サイト" : "Best Free YouTube MP3 Downloader"}
+                  </h3>
+                  <p className={`text-[#333333] md:leading-[35px] leading-[28px] ${language === "en" ? "block" : "hidden"}`}>
+                    Effortlessly convert YouTube videos to MP3 music files with OnlyMP3, a user-friendly web app.
+                    Experience the simplicity of transforming your favorite YouTube content into high-quality audio with
+                    just a single click - no signup or software installation required. Our service is optimized for
+                    unlimited conversions, allowing you to transform any number of videos into MP3 files with ease. To
+                    start, simply copy and paste the YouTube video URL into our efficient YouTube to MP3 converter. The
+                    process is automatic, converting the video to an audio file in moments. Enjoy the best quality audio
+                    conversions from YouTube, completely free and secure.
+                  </p>
+                  <p className={`text-[#333333] md:leading-[35px] leading-[28px] ${language === "ja" ? "block" : "hidden"}`}>
+                    OnlyMP3は、YouTube動画をMP3音楽ファイルに簡単に変換できる使いやすいウェブアプリです。このサービスにはサインアップやソフトウェアのインストールは必要ありません。私たちのサービスは無制限の変換をサポートし、任意の数のビデオをMP3ファイルに簡単に変換することができます。使用方法は簡単です。YouTube動画のURLをコピーして、MP3変換ソフトに貼り付けるだけです。プロセスは自動的で、瞬時にビデオをオーディオファイルに変換します。最高品質のオーディオで、YouTubeからの変換を完全無料かつ安全に楽しむことができます。
                   </p>
                 </section>
               </main>

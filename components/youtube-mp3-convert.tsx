@@ -53,7 +53,7 @@ export function YoutubeMp3Convert(props: {loading: boolean, duration: string, fi
                 <div className="flex justify-between items-center border-b border-gray-200 py-1 sm:py-2">
                   <span className="text-gray-800 text-sm sm:text-base">File Size</span>
                   {props.loading ? <Skeleton height={isMobile ? 30 : 30} width={isMobile ? 90 : 90}/> :
-                      <span className="font-medium text-sm sm:text-base">4.3 MB</span>}
+                      <span className="font-medium text-sm sm:text-base">{props.fileSize} MB</span>}
 
                 </div>
                 <div className="flex justify-between items-center py-1 sm:py-2">
@@ -71,14 +71,15 @@ export function YoutubeMp3Convert(props: {loading: boolean, duration: string, fi
                             <Button className="bg-red-600 text-white py-2 sm:py-0">DropBox</Button>
                           </Link>
                       }
-
-
                   </div>
                 </div>
               </div>
-
-              <Button className="bg-red-600 text-white w-full py-2 sm:py-0"
-                      onClick={() => props.loading ? console.log( "wait" ) : props.setAnotherVideo( false )}>{props.loading ? "Wait For Minutes" : "Convert another video"}</Button>
+              <Button
+                  className="bg-red-600 text-white w-full py-2 sm:py-0"
+                  onClick={() => props.loading ? console.log( "wait" ) : props.setAnotherVideo( false )}
+              >
+                {props.loading ? "Wait For Minutes" : "Convert another video"}
+              </Button>
             </div>
           </CardContent>
         </Card>
