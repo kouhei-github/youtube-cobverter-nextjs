@@ -22,7 +22,7 @@ export default function SiteExplain(props: {language: languageType}) {
                 お気に入りのビデオを即座に変換し、すぐに素晴らしい音楽を楽しむことができます。
               </p>
             </div>
-            <div className={`${language === "en" as languageType ? "block" : "hidden"}`}>
+            <div className={`md:h-[250px] h-full ${language === "en" as languageType ? "block" : "hidden"}`}>
               <h3 className="text-lg font-semibold text-center mb-4 h-full md:h-[56px]">Fastest speed and efficiency</h3>
               <p className="text-sm text-center">
                 We are the fastest YouTube to MP3 converter and YouTube Downloader.
@@ -44,7 +44,7 @@ export default function SiteExplain(props: {language: languageType}) {
                 当社の技術は最高レベルにあり、いつでも高いオーディオ品質が保証されます。
               </p>
             </div>
-            <div className={`${language === "en" as languageType ? "block" : "hidden"}`}>
+            <div className={`md:h-[250px] h-full ${language === "en" as languageType ? "block" : "hidden"}`}>
               <h3 className="text-lg font-semibold text-center mb-4 h-full md:h-[56px]">Highest level of audio quality</h3>
               <p className="text-sm text-center">
                 KoheiMP3 incarnates downloading clear audio from YouTube (up to
@@ -67,7 +67,7 @@ export default function SiteExplain(props: {language: languageType}) {
                 当社のプラットフォームはあなたのデバイスに完全に対応し、すべてのユーザーにシームレスなエクスペリエンスを保証します。
               </p>
             </div>
-            <div className={`${language === "en" as languageType ? "block" : "hidden"}`}>
+            <div className={`md:h-[250px] h-full ${language === "en" as languageType ? "block" : "hidden"}`}>
               <h3 className="text-lg font-semibold text-center mb-4 h-full md:h-[56px]">Cross-platform compatibility</h3>
               <p className="text-sm text-center">
                 Windows, Mac, Android, and iOS users can all use KoheiMP3, making it the best YouTube MP3 converter and
