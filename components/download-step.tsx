@@ -9,7 +9,7 @@ import Link from 'next/link'
 export default function DownloadStep(props: {language: languageType}) {
   const { language } = props
   return (
-      <div className="container mx-auto">
+      <div className="container mx-auto w-[98%]">
         <div className="text-center">
           <p className={`${language === "ja" as languageType ? "block" : "hidden"} text-sm text-gray-600`}>
             無料以下のコンバーターに足を引っ張られないようにしてください。KoheiMP3のパワー、利便性、品質を発見し、YouTube動画の楽しめ方に革命をもたらしましょう。今すぐYouTube
