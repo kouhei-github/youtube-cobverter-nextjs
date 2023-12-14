@@ -31,6 +31,7 @@ export function YouTube() {
 
   const anotherVideo = (flag: boolean) => {
     setConvert(flag)
+    setUrl("")
   }
 
   const [language, setLanguage] = useState("en")
