@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { CardContent, Card } from "@/components/ui/card"
 
-export function YoutubeMp3Convert() {
+export function YoutubeMp3Convert(props: {url: string}) {
   return (
     <div className="bg-white">
       <div className="flex flex-col items-center my-3 space-y-2 sm:space-y-4">
@@ -37,7 +37,9 @@ export function YoutubeMp3Convert() {
                 <div className="flex justify-between items-center py-1 sm:py-2">
                   <span className="text-gray-800 text-sm sm:text-base">Download Link</span>
                   <div className="flex space-x-1 sm:space-x-2">
-                    <Button className="bg-red-600 text-white py-2 sm:py-0">Download</Button>
+                    <Link href={props.url} download={props.url}>
+                      <Button className="bg-red-600 text-white py-2 sm:py-0">Download</Button>
+                    </Link>
                     <Button className="bg-red-600 text-white py-2 sm:py-0">DropBox</Button>
                   </div>
                 </div>

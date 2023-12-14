@@ -8,9 +8,35 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {useState} from 'react'
 import {YoutubeMp3Convert} from '@/components/youtube-mp3-convert'
+import axios from 'axios'
+import {cn} from '@/lib/utils'
+import * as React from 'react'
 
 export function YouTube() {
   const [convert, setConvert] = useState(false)
+
+  const [url, setUrl] = useState<string>("")
+
+  const [s3Url, setS3Url] = useState<string>("")
+  const upload = async () => {
+    if (url === "")return
+    const body = {url}
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://jqfzxyv2ak.execute-api.ap-northeast-1.amazonaws.com/main/prod',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      data : JSON.stringify(body)
+    };
+
+    const res = await axios.request(config)
+    const mp3: {file_name: string} = res.data
+    setS3Url(mp3.file_name)
+    setConvert(true)
+  }
+
   return (
       <div className="container md:px-4 px-0 rounded md:w-2/3 w-[93%] mx-auto">
         <header className="flex md:flex-row flex-col md:justify-between justify-start md:items-center items-start py-4">
@@ -20,23 +46,31 @@ export function YouTube() {
           <h2 className="md:text-4xl text-xl font-bold text-center text-[#333333] mb-4">YouTube to MP3
             Converter</h2>
           <div className="flex justify-center items-center space-x-4">
-            <Input placeholder="Paste YouTube link here..."/>
-            <Button onClick={() => setConvert(!convert)} className="bg-red-500 text-white hover:bg-red-600">Convert</Button>
+            <input
+                type={"text"}
+                className={cn(
+                    "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                )}
+                value={url}
+                placeholder={"YouTube url is Here"}
+                onChange={(e) => setUrl(e.target.value)}
+            />
+            <Button onClick={() => upload()} className="bg-red-500 text-white hover:bg-red-600">Convert</Button>
           </div>
         </section>
         {convert ? (
-            <YoutubeMp3Convert/>
+            <YoutubeMp3Convert url={s3Url}/>
         ) : (
             <main>
               <p className="text-left text-[#333333] my-6 w-11/12 mx-auto">
-                By using our service, <br className={"block md:hidden"} />you are accepting our
+                By using our service, <br className={"block md:hidden"}/>you are accepting our
                 <Link className="text-red-500 hover:text-red-600 pl-1" href="#">
                   terms of service
                 </Link>
                 .{"\n                  "}
               </p>
               <section className="md:w-full w-[95%] mx-auto">
-                <h3 className="md:text-3xl text-xl font-bold text-[#333333] mb-4 underline underline-offset-4">Best Free YouTube MP3 Downloader</h3>
+              <h3 className="md:text-3xl text-xl font-bold text-[#333333] mb-4 underline underline-offset-4">Best Free YouTube MP3 Downloader</h3>
                 <p className="text-[#333333] md:leading-[35px] leading-[28px]">
                   OnlyMP3 web app helps you easily convert YouTube videos to MP3 music files with just one click. You
                   don not
