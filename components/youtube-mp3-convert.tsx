@@ -5,25 +5,45 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { CardContent, Card } from "@/components/ui/card"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css';
+import { isMobile } from 'react-device-detect';
+import {TypeAnimation} from 'react-type-animation'
 
-export function YoutubeMp3Convert(props: {url: string, thumbnail: string, title: string, videoUrl: string, setAnotherVideo: (data: boolean) => void}) {
+
+export function YoutubeMp3Convert(props: {loading: boolean, duration: string, fileSize: string, url: string, thumbnail: string, title: string, videoUrl: string, setAnotherVideo: (data: boolean) => void}) {
   return (
     <div className="bg-white">
       <div className="flex flex-col items-center my-3 space-y-2 sm:space-y-4">
-        <p className="text-xs sm:text-sm">
-          By using our service, you are accepting our
-          <Link className="text-red-600 pl-1" href="#">
-            terms of service
-          </Link>
-          .{"\n              "}
-        </p>
+        {props.loading ?
+            <TypeAnimation
+                sequence={[
+                  // Same substring at the start will only be typed out once, initially
+                  'Please wait a moment.',
+                  1100, // wait 1s before replacing "Mice" with "Hamsters"
+                  ' We are converting to MP3. ',
+                  1100,
+                ]}
+                style={{color: "#333333", fontSize: "20px"}}
+                wrapper="span"
+                speed={30}
+                repeat={Infinity}
+            /> :
+            <p className={"text-[20px] text-[#333333]"}>We were able to convert to MP3.</p>
+        }
+
         <Card className="w-full pt-3">
           <CardContent>
             <div className="flex flex-col items-center space-y-2 sm:space-y-4">
-              <img alt="Video thumbnail" className="aspect-video w-full" height="90" src={props.thumbnail} width="160" />
-            <div className="text-center">
-            <h2 className="text-lg sm:text-xl font-semibold">{props.title}</h2>
-                <p className="text-gray-600 text-xs sm:text-base">Duration: 03:06 minutes</p>
+              {props.loading ? <Skeleton height={isMobile ? 160 : 150} width={isMobile ? 330 : 600}/> :
+                  <img alt="Video thumbnail" className="aspect-video w-full" height="90" src={props.thumbnail}
+                       width="160"/>}
+
+              <div className="text-center">
+                {props.loading ? <Skeleton height={isMobile ? 30 : 30} width={isMobile ? 330 : 600}/> :
+                    <h2 className="text-lg sm:text-xl font-semibold">{props.title}</h2>}
+                {props.loading ? <Skeleton height={isMobile ? 30 : 30} width={isMobile ? 330 : 600}/> :
+                    <p className="text-gray-600 text-xs sm:text-base">Duration: {props.duration} minutes</p>}
               </div>
               <div className="w-full">
                 <div className="flex justify-between items-center border-b border-gray-200 py-1 sm:py-2">
@@ -32,20 +52,25 @@ export function YoutubeMp3Convert(props: {url: string, thumbnail: string, title:
                 </div>
                 <div className="flex justify-between items-center border-b border-gray-200 py-1 sm:py-2">
                   <span className="text-gray-800 text-sm sm:text-base">File Size</span>
-                  <span className="font-medium text-sm sm:text-base">4.3 MB</span>
+                  {props.loading ? <Skeleton height={isMobile ? 30 : 30} width={isMobile ? 90 : 90}/> :
+                      <span className="font-medium text-sm sm:text-base">4.3 MB</span>}
+
                 </div>
                 <div className="flex justify-between items-center py-1 sm:py-2">
                   <span className="text-gray-800 text-sm sm:text-base">Download Link</span>
                   <div className="flex space-x-1 sm:space-x-2">
                     <Link href={props.url} download={props.url}>
-                      <Button className="bg-red-600 text-white py-2 sm:py-0">Download</Button>
+                      {props.loading ? <Skeleton height={isMobile ? 40 : 40} width={isMobile ? 90 : 90}/> :
+                          <Button className="bg-red-600 text-white py-2 sm:py-0">Download</Button>}
                     </Link>
-                    <Button className="bg-red-600 text-white py-2 sm:py-0">DropBox</Button>
+                    {props.loading ? <Skeleton height={isMobile ? 40 : 40} width={isMobile ? 90 : 90}/> :
+                        <Button className="bg-red-600 text-white py-2 sm:py-0">DropBox</Button>}
                   </div>
                 </div>
               </div>
 
-              <Button className="bg-red-600 text-white w-full py-2 sm:py-0" onClick={() => props.setAnotherVideo(false)}>Convert another video</Button>
+              <Button className="bg-red-600 text-white w-full py-2 sm:py-0"
+                      onClick={() => props.loading ? console.log( "wait" ) : props.setAnotherVideo( false )}>{props.loading ? "Wait For Minutes" : "Convert another video"}</Button>
             </div>
           </CardContent>
         </Card>

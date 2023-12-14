@@ -11,30 +11,22 @@ import {YoutubeMp3Convert} from '@/components/youtube-mp3-convert'
 import axios from 'axios'
 import {cn} from '@/lib/utils'
 import * as React from 'react'
+import {convertMp3} from '@/lib/endpoint'
 
 export function YouTube() {
   const [convert, setConvert] = useState(false)
-
   const [url, setUrl] = useState<string>("")
+  const [response, setResponse] = useState<{file_name: string, thumbnail: string, title: string, duration: string, filesize: string}>({file_name: "aa", thumbnail: "aa", title: "aa", duration: "aaa", filesize:"zzz"})
 
-  const [response, setResponse] = useState<{file_name: string, thumbnail: string, title: string}>({file_name: "", thumbnail: "", title: ""})
+  const [loading, setLoading] = useState(true);
+
   const upload = async () => {
     if (url === "")return
-    const body = {url}
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'https://jqfzxyv2ak.execute-api.ap-northeast-1.amazonaws.com/main/prod',
-      headers: {
-        'Content-Type': 'text/plain'
-      },
-      data : JSON.stringify(body)
-    };
-
-    const res = await axios.request(config)
-    const mp3: {file_name: string, thumbnail: string, title: string} = res.data
-    setResponse(mp3)
+    setLoading(true)
     setConvert(true)
+    const mp3 = await convertMp3(url)
+    setResponse(mp3)
+    setLoading(false)
   }
 
   const anotherVideo = (flag: boolean) => {
@@ -48,7 +40,16 @@ export function YouTube() {
         </header>
 
         {convert ? (
-            <YoutubeMp3Convert url={response.file_name} thumbnail={response.thumbnail} title={response.title} videoUrl={url} setAnotherVideo={anotherVideo} />
+            <YoutubeMp3Convert
+                duration={response.duration}
+                fileSize={response.filesize}
+                url={response.file_name}
+                thumbnail={response.thumbnail}
+                title={response.title}
+                videoUrl={url}
+                setAnotherVideo={anotherVideo}
+                loading={loading}
+            />
         ) : (
             <div>
               <section className="mt-8 border border-gray-200 md:p-16 p-5">
