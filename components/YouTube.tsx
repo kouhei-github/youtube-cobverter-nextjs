@@ -39,8 +39,8 @@ export function YouTube() {
                 <h3 className="md:text-3xl text-xl font-bold text-[#333333] mb-4 underline underline-offset-4">Best Free YouTube MP3 Downloader</h3>
                 <p className="text-[#333333] md:leading-[35px] leading-[28px]">
                   OnlyMP3 web app helps you easily convert YouTube videos to MP3 music files with just one click. You
-                  don't
-                  have to Signup or install any software to perform the conversion. It's as easy as apple pie. We also
+                  don not
+                  have to Signup or install any software to perform the conversion. It is as easy as apple pie. We also
                   support
                   an unlimited number of videos to convert into audio files and save them to your Dropbox account. To
                   convert
@@ -48,7 +48,7 @@ export function YouTube() {
                   will
                   auto convert the Video to Audio file, You can also click the Dropbox button to save the file to the
                   cloud
-                  platform. Enjoy unlimited conversion of music from youtube in the best available quality. It’s a
+                  platform. Enjoy unlimited conversion of music from youtube in the best available quality. It is a
                   completely
                   free and secure service. Learn more about OnlyMP3 on <Link className={"text-red-500 hover:underline"}
                                                                              href={"https://www.tecklinker.com/"}>https://www.tecklinker.com/</Link>
