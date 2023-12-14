@@ -36,7 +36,7 @@ export function YouTube() {
   return (
       <div className="container md:px-4 px-0 rounded md:w-2/3 w-[93%] mx-auto">
         <header className="flex md:flex-row flex-col md:justify-between justify-start md:items-center items-start py-4">
-          <h1 className="md:text-3xl text-xl  font-bold text-[#333333]">OnlyMP3</h1>
+          <h1 className="md:text-3xl text-xl  font-bold text-[#333333]">KoheiMP3</h1>
         </header>
 
         {convert ? (
