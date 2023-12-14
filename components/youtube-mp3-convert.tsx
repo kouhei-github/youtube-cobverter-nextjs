@@ -59,14 +59,19 @@ export function YoutubeMp3Convert(props: {loading: boolean, duration: string, fi
                 <div className="flex justify-between items-center py-1 sm:py-2">
                   <span className="text-gray-800 text-sm sm:text-base">Download Link</span>
                   <div className="flex space-x-1 sm:space-x-2">
-                    <Link href={props.url} download={props.url}>
+
                       {props.loading ? <Skeleton height={isMobile ? 40 : 40} width={isMobile ? 90 : 90}/> :
-                          <Button className="bg-red-600 text-white py-2 sm:py-0 animate-pulse">Download</Button>}
-                    </Link>
-                    <Link href={props.url} download={props.url}>
+                          <Link href={props.url} download={props.url}>
+                          <Button className="bg-red-600 text-white py-2 sm:py-0 animate-pulse">Download</Button>
+                          </Link>
+                      }
+
                       {props.loading ? <Skeleton height={isMobile ? 40 : 40} width={isMobile ? 90 : 90}/> :
-                          <Button className="bg-red-600 text-white py-2 sm:py-0">DropBox</Button>}
-                    </Link>
+                          <Link href={props.url} download={props.url}>
+                            <Button className="bg-red-600 text-white py-2 sm:py-0">DropBox</Button>
+                          </Link>
+                      }
+
 
                   </div>
                 </div>
