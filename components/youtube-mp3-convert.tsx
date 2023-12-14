@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { CardContent, Card } from "@/components/ui/card"
 
-export function YoutubeMp3Convert(props: {url: string}) {
+export function YoutubeMp3Convert(props: {url: string, thumbnail: string, title: string, videoUrl: string, setAnotherVideo: (data: boolean) => void}) {
   return (
     <div className="bg-white">
       <div className="flex flex-col items-center my-3 space-y-2 sm:space-y-4">
@@ -20,9 +20,9 @@ export function YoutubeMp3Convert(props: {url: string}) {
         <Card className="w-full pt-3">
           <CardContent>
             <div className="flex flex-col items-center space-y-2 sm:space-y-4">
-              <img alt="Video thumbnail" className="aspect-video w-full" height="90" src="https://devio2023-media.developers.io/wp-content/uploads/2019/05/amazon-dynamodb-960x504.png" width="160" />
-              <div className="text-center">
-                <h2 className="text-lg sm:text-xl font-semibold">Title: Ayra Starr - Rush (Official Music Video)</h2>
+              <img alt="Video thumbnail" className="aspect-video w-full" height="90" src={props.thumbnail} width="160" />
+            <div className="text-center">
+            <h2 className="text-lg sm:text-xl font-semibold">{props.title}</h2>
                 <p className="text-gray-600 text-xs sm:text-base">Duration: 03:06 minutes</p>
               </div>
               <div className="w-full">
@@ -44,7 +44,8 @@ export function YoutubeMp3Convert(props: {url: string}) {
                   </div>
                 </div>
               </div>
-              <Button className="bg-red-600 text-white w-full py-2 sm:py-0">Convert another video</Button>
+
+              <Button className="bg-red-600 text-white w-full py-2 sm:py-0" onClick={() => props.setAnotherVideo(false)}>Convert another video</Button>
             </div>
           </CardContent>
         </Card>
